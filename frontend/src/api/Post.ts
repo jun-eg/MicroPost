@@ -1,13 +1,15 @@
 import axios from "axios";
 
-type getListResultType = {
+export type getListResultType = {
   id: number;
   content: string;
   user_name: string;
   created_at: Date;
 };
 
-export const getList = async (token: string): Promise<getListResultType[]> => {
+export const getPostList = async (
+  token: string
+): Promise<getListResultType[]> => {
   const url = `http://localhost:3001/post?token=${token}&records=10`;
   const res = await axios.get<getListResultType[]>(url);
   return res.data;
