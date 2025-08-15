@@ -1,9 +1,10 @@
 import React, { ReactNode } from "react";
+import styled from "styled-components";
 
 const Post = (props: any) => {
-  const { children, post } = props;
+  const { post } = props;
 
-  const getDateStr = (dateObj: Date) => {
+  const getDateStr = () => {
     const year = post.created_at.getFullYear();
     const month = post.created_at.getMonth() + 1;
     const date = post.created_at.getDate();
@@ -25,12 +26,32 @@ const Post = (props: any) => {
   };
 
   return (
-    <div>
-      <div>{getDateStr(post.craeted_at)}</div>
-      <div>{post.user_name}</div>
+    <SPost>
+      <div>
+        <SName>{post.user_name}</SName>
+        <SDate>{getDateStr()}</SDate>
+      </div>
       <div>{getLines(post.content)}</div>
-    </div>
+    </SPost>
   );
 };
 
 export default Post;
+
+const SPost = styled.div`
+  margin: 8px 0px;
+  border-bottom: 1px solid #aaaaaa;
+  text-align: left;
+  padding-left: 8px;
+`;
+
+const SName = styled.span`
+  font-size: small;
+  color: #000044;
+`;
+
+const SDate = styled.span`
+  margin-left: 8px;
+  font-size: small;
+  color: #000044;
+`;

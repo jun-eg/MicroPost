@@ -3,6 +3,7 @@ import Post from "./Post";
 import { UserContext } from "../provider/UserProvider";
 import { getListResultType, getPostList } from "../api/Post";
 import { PostListContext } from "../provider/PostListProvider";
+import styled from "styled-components";
 
 const PostList = () => {
   const { postList, setPostList } = useContext(PostListContext);
@@ -33,13 +34,18 @@ const PostList = () => {
   }, []);
 
   return (
-    <div>
-      <p>PostList</p>
+    <SPostList>
       {postList.map((p) => (
         <Post key={p.id} post={p} />
       ))}
-    </div>
+    </SPostList>
   );
 };
 
 export default PostList;
+
+const SPostList = styled.div`
+  margin-top: 16px;
+  height: 100%;
+  overflow-y: scroll;
+`;

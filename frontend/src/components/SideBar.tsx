@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../provider/UserProvider";
 import { getListResultType, getPostList, post } from "../api/Post";
 import { PostListContext } from "../provider/PostListProvider";
+import styled from "styled-components";
 
 const SideBar = () => {
   const [msg, setMsg] = useState("");
@@ -33,23 +34,46 @@ const SideBar = () => {
   };
 
   return (
-    <div>
-      <div>hoge</div>
-      <div>hoge@example.com</div>
+    <SSideBar>
+      <SSideBarRow>hoge</SSideBarRow>
+      <SSideBarRow>hoge@example.com</SSideBarRow>
 
-      <div>
-        <textarea
+      <SSideBarRow>
+        <SSideBarTextArea
           rows={4}
           value={msg}
           onChange={(evt) => setMsg(evt.target.value)}
-        ></textarea>
-      </div>
+        ></SSideBarTextArea>
+      </SSideBarRow>
 
-      <div>
-        <button onClick={onSendClick}>送信</button>
-      </div>
-    </div>
+      <SSideBarRow>
+        <SSideBarButton onClick={onSendClick}>送信</SSideBarButton>
+      </SSideBarRow>
+    </SSideBar>
   );
 };
 
 export default SideBar;
+
+const SSideBar = styled.div`
+  padding: 8px;
+`;
+
+const SSideBarRow = styled.div`
+  margin-top: 4px;
+  margin-bottom: 4px;
+  text-align: left;
+`;
+
+const SSideBarTextArea = styled.textarea`
+  border-radius: 4px;
+  box-shadow: inset 0 2px 4px #cccccc;
+`;
+
+const SSideBarButton = styled.button`
+  background-color: #222222;
+  padding: 4px;
+  border-radius: 8px;
+  color: #fafafa;
+  width: 100%;
+`;
