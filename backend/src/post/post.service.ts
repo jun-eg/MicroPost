@@ -4,6 +4,13 @@ import { Auth } from 'src/entities/auth.entity';
 import { MicroPost } from 'src/entities/microposts.entity';
 import { Equal, MoreThan, Repository } from 'typeorm';
 
+type ResultType = {
+  id: number;
+  content: string;
+  user_name: string;
+  created_at: Date;
+};
+
 @Injectable()
 export class PostService {
   constructor(
@@ -37,7 +44,11 @@ export class PostService {
     await this.microPostsRepository.save(record);
   }
 
-  async getList(token: string, start: number = 0, nr_records: number = 1) {
+  async getList(
+    token: string,
+    start: number = 0,
+    nr_records: number = 1,
+  ): Promise<ResultType[]> {
     // ログイン済みかチェック
     const now = new Date();
 
@@ -67,13 +78,6 @@ export class PostService {
       .orderBy('micro_post.created_at', 'DESC')
       .offset(start)
       .limit(nr_records);
-
-    type ResultType = {
-      id: number;
-      content: string;
-      user_name: string;
-      created_at: Date;
-    };
 
     const records = await qb.getRawMany<ResultType>();
     console.log(records);

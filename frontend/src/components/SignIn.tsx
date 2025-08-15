@@ -1,16 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Sign_in } from "../api/Auth";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../provider/UserProvider";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState("");
   const [pass, setPass] = useState("");
+  const { setUserInfo } = useContext(UserContext);
 
   const onSignInClick = async () => {
     const ret = await Sign_in(userId, pass);
     console.log("onSignIn", ret);
+
     if (ret && ret.token) {
+      setUserInfo({
+        id: ret.user_id,
+        token: ret.token,
+      });
       navigate("/main");
     }
   };
