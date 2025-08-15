@@ -5,6 +5,11 @@ import { Auth } from '../entities/auth.entity';
 import { User } from '../entities/users.entity';
 import { createHash } from 'crypto';
 
+type ret = {
+  token: string;
+  user_id: number;
+};
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -15,7 +20,7 @@ export class AuthService {
     private authRepository: Repository<Auth>,
   ) {}
 
-  async getAuth(name: string, password: string) {
+  async getAuth(name: string, password: string): Promise<ret> {
     // name, passwordからUserレコード検索
     if (!password) {
       throw new UnauthorizedException(); // パスワードが指定されていない場合は認証失敗
