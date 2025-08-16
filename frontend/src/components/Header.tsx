@@ -48,7 +48,7 @@ const SLogo = styled.div`
   padding-top: 8px;
   padding-bottom: 8px;
   text-align: center;
-  justyify-content: start;
+  justify-content: center;
 `;
 
 const SRightItem = styled.div`
