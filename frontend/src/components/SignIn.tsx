@@ -12,7 +12,6 @@ const SignIn = () => {
 
   const onSignInClick = async () => {
     const ret = await Sign_in(userId, pass);
-    console.log("onSignIn", ret);
 
     if (ret && ret.token) {
       setUserInfo({
@@ -23,43 +22,41 @@ const SignIn = () => {
     }
   };
   return (
-    <SSignInFrame>
-      <SSignInRow>
-        <SSignInLabel>
-          <label htmlFor="id">ID</label>
-        </SSignInLabel>
+    <div className="flex justify-center m-20">
+      <div className="w-full max-w-lg bg-slate-200 grid grid-cols-2 place-items-stretch p-5 rounded-lg drop-shadow-2xl gap-3 border border-black selection:">
+        <label htmlFor="id" className="font-bold">
+          ID
+        </label>
+        <input
+          id="id"
+          value={userId}
+          type="text"
+          onChange={(evt) => setUserId(evt.target.value)}
+          className="rounded"
+        />
 
-        <SSignInInput>
-          <input
-            id="id"
-            value={userId}
-            type="text"
-            onChange={(evt) => setUserId(evt.target.value)}
-          />
-        </SSignInInput>
-      </SSignInRow>
+        <label htmlFor="password" className="font-bold">
+          Password
+        </label>
+        <input
+          id="password"
+          value={pass}
+          type="password"
+          onChange={(evt) => setPass(evt.target.value)}
+          className="rounded"
+        />
+        <button className="bg-sky-400 hover:bg-sky-300 p-1 font-bold rounded-full w-full text-white border-2 border-white">
+          SignUp
+        </button>
 
-      <SSignInRow>
-        <SSignInLabel>
-          <label htmlFor="password">Password</label>
-        </SSignInLabel>
-
-        <SSignInInput>
-          <input
-            id="password"
-            value={pass}
-            type="password"
-            onChange={(evt) => setPass(evt.target.value)}
-          />
-        </SSignInInput>
-      </SSignInRow>
-
-      <SSignInRow>
-        <SLoginButton type="button" onClick={onSignInClick}>
-          Login
-        </SLoginButton>
-      </SSignInRow>
-    </SSignInFrame>
+        <button
+          onClick={onSignInClick}
+          className="bg-sky-400 hover:bg-sky-300 p-1 font-bold rounded-full w-full text-white border-2 border-white"
+        >
+          SignIn
+        </button>
+      </div>
+    </div>
   );
 };
 
