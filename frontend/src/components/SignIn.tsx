@@ -11,14 +11,18 @@ const SignIn = () => {
   const { setUserInfo } = useContext(UserContext);
 
   const onSignInClick = async () => {
-    const ret = await Sign_in(userId, pass);
+    try {
+      const ret = await Sign_in(userId, pass);
 
-    if (ret && ret.token) {
-      setUserInfo({
-        id: ret.user_id,
-        token: ret.token,
-      });
-      navigate("/main");
+      if (ret && ret.token) {
+        setUserInfo({
+          id: ret.user_id,
+          token: ret.token,
+        });
+        navigate("/main");
+      }
+    } catch (error) {
+      alert("IDもしくは、Passが無効です");
     }
   };
   return (
