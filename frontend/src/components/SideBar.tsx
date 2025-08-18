@@ -16,11 +16,9 @@ const SideBar = () => {
 
   const getPost = async () => {
     const posts = await getPostList(userInfo.token);
-    console.log(posts);
     let postList: Array<getListResultType> = [];
 
     if (posts) {
-      console.log(posts);
       posts.forEach((p: any) => {
         postList.push({
           id: p.id,
@@ -31,49 +29,27 @@ const SideBar = () => {
       });
     }
     setPostList(postList);
+    setMsg("");
   };
 
   return (
-    <SSideBar>
-      <SSideBarRow>hoge</SSideBarRow>
-      <SSideBarRow>hoge@example.com</SSideBarRow>
-
-      <SSideBarRow>
-        <SSideBarTextArea
-          rows={4}
-          value={msg}
-          onChange={(evt) => setMsg(evt.target.value)}
-        ></SSideBarTextArea>
-      </SSideBarRow>
-
-      <SSideBarRow>
-        <SSideBarButton onClick={onSendClick}>送信</SSideBarButton>
-      </SSideBarRow>
-    </SSideBar>
+    <div className="flex flex-col p-2 gap-2">
+      <div className="font-bold truncate">{userInfo.userName}</div>
+      <div className="font-bold truncate">{userInfo.umail}</div>
+      <textarea
+        rows={4}
+        value={msg}
+        onChange={(evt) => setMsg(evt.target.value)}
+        className="border border-black"
+      ></textarea>
+      <button
+        onClick={onSendClick}
+        className="bg-sky-400 hover:bg-sky-300 p-1 font-bold rounded-full w-full text-white border-2 truncate border-white"
+      >
+        Post
+      </button>
+    </div>
   );
 };
 
 export default SideBar;
-
-const SSideBar = styled.div`
-  padding: 8px;
-`;
-
-const SSideBarRow = styled.div`
-  margin-top: 4px;
-  margin-bottom: 4px;
-  text-align: left;
-`;
-
-const SSideBarTextArea = styled.textarea`
-  border-radius: 4px;
-  box-shadow: inset 0 2px 4px #cccccc;
-`;
-
-const SSideBarButton = styled.button`
-  background-color: #222222;
-  padding: 4px;
-  border-radius: 8px;
-  color: #fafafa;
-  width: 100%;
-`;

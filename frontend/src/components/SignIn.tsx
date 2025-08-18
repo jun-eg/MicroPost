@@ -3,6 +3,7 @@ import { Sign_in } from "../api/Auth";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../provider/UserProvider";
 import styled from "styled-components";
+import { getUser } from "../api/User";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -13,11 +14,14 @@ const SignIn = () => {
   const onSignInClick = async () => {
     try {
       const ret = await Sign_in(userId, pass);
+      const user = await getUser(ret.user_id, ret.token);
 
-      if (ret && ret.token) {
+      if (ret && ret.token && user) {
         setUserInfo({
           id: ret.user_id,
           token: ret.token,
+          userName: user.name,
+          umail: user.umail,
         });
         navigate("/main");
       }
@@ -28,7 +32,7 @@ const SignIn = () => {
   return (
     <div className="flex justify-center m-20">
       <div className="w-full max-w-lg bg-slate-200 grid grid-cols-2 place-items-stretch p-5 rounded-lg drop-shadow-2xl gap-3 border border-black selection:">
-        <label htmlFor="id" className="font-bold">
+        <label htmlFor="id" className="font-bold truncate">
           ID
         </label>
         <input
@@ -39,7 +43,7 @@ const SignIn = () => {
           className="rounded"
         />
 
-        <label htmlFor="password" className="font-bold">
+        <label htmlFor="password" className="font-bold truncate">
           Password
         </label>
         <input
@@ -49,13 +53,13 @@ const SignIn = () => {
           onChange={(evt) => setPass(evt.target.value)}
           className="rounded"
         />
-        <button className="bg-sky-400 hover:bg-sky-300 p-1 font-bold rounded-full w-full text-white border-2 border-white">
+        <button className="bg-sky-400 hover:bg-sky-300 p-1 font-bold rounded-full w-full text-white border-2 truncate border-white">
           SignUp
         </button>
 
         <button
           onClick={onSignInClick}
-          className="bg-sky-400 hover:bg-sky-300 p-1 font-bold rounded-full w-full text-white border-2 border-white"
+          className="bg-sky-400 hover:bg-sky-300 p-1 font-bold rounded-full w-full text-white border-2 truncate border-white"
         >
           SignIn
         </button>

@@ -1,7 +1,11 @@
 import React, { ReactNode } from "react";
-import styled from "styled-components";
+import { getListResultType } from "../api/Post";
 
-const Post = (props: any) => {
+type postProps = {
+  post: getListResultType;
+};
+
+const Post = (props: postProps) => {
   const { post } = props;
 
   const getDateStr = () => {
@@ -26,32 +30,16 @@ const Post = (props: any) => {
   };
 
   return (
-    <SPost>
-      <div>
-        <SName>{post.user_name}</SName>
-        <SDate>{getDateStr()}</SDate>
+    <div className="grid grid-cols-3 bg-slate-200 rounded-lg w-full border border-black">
+      <div className="col-span-1 font-bold text-sky-400/75 underline underline-offset-4 truncate">
+        {post.user_name}
       </div>
-      <div>{getLines(post.content)}</div>
-    </SPost>
+      <div className="col-span-2 font-bold text-sky-400/75 underline underline-offset-4 truncate">
+        {getDateStr()}
+      </div>
+      <div className="p-2 col-span-3">{getLines(post.content)}</div>
+    </div>
   );
 };
 
 export default Post;
-
-const SPost = styled.div`
-  margin: 8px 0px;
-  border-bottom: 1px solid #aaaaaa;
-  text-align: left;
-  padding-left: 8px;
-`;
-
-const SName = styled.span`
-  font-size: small;
-  color: #000044;
-`;
-
-const SDate = styled.span`
-  margin-left: 8px;
-  font-size: small;
-  color: #000044;
-`;
