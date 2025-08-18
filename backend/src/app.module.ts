@@ -14,7 +14,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       url: process.env.DB_URL,
       autoLoadEntities: true,
       synchronize: false,
-      ssl: { rejectUnauthorized: false },
     }),
     UserModule,
     PostModule,
