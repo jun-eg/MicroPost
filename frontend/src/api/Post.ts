@@ -10,7 +10,7 @@ export type getListResultType = {
 export const getPostList = async (
   token: string
 ): Promise<getListResultType[]> => {
-  const url = `http://localhost:3001/post?token=${token}&records=10`;
+  const url = `${process.env.REACT_APP_BACKEND_URL}/post?token=${token}&records=10`;
   const res = await axios.get<getListResultType[]>(url);
   return res.data;
 };
@@ -20,7 +20,7 @@ export const post = async (user_id: string, token: string, msg: string) => {
     message: msg,
   };
 
-  const url = `http://localhost:3001/post?user_id=${user_id}&token=${token}`;
+  const url = `${process.env.REACT_APP_BACKEND_URL}/post?user_id=${user_id}&token=${token}`;
   const res = await axios.post(url, data);
   console.log(res.status);
 };

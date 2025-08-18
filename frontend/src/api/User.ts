@@ -13,7 +13,7 @@ export const getUser = async (
   user_id: number,
   token: string
 ): Promise<User> => {
-  const url = `http://localhost:3001/user/${user_id}?token=${token}`;
+  const url = `${process.env.REACT_APP_BACKEND_URL}/user/${user_id}?token=${token}`;
   const res = await axios.get<User>(url);
   return res.data;
 };
