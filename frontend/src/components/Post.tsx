@@ -30,11 +30,11 @@ const Post = (props: postProps) => {
   };
 
   return (
-    <div className="grid grid-cols-3 bg-slate-200 rounded-lg w-full border border-black">
+    <div className="grid grid-cols-3 bg-slate-200 rounded-lg w-full border-2 border-gray-300">
       <div className="col-span-1 font-bold text-sky-400/75 underline underline-offset-4 truncate">
         {post.user_name}
       </div>
-      <div className="col-span-2 font-bold text-sky-400/75 underline underline-offset-4 truncate">
+      <div className="col-span-2 font-bold text-sky-400/75  underline-offset-4 truncate">
         {getDateStr()}
       </div>
       <div className="p-2 col-span-3">{getLines(post.content)}</div>

@@ -31,7 +31,7 @@ const SignIn = () => {
   };
   return (
     <div className="flex justify-center m-20">
-      <div className="w-full max-w-lg bg-slate-200 grid grid-cols-2 place-items-stretch p-5 rounded-lg drop-shadow-2xl gap-3 border border-black selection:">
+      <div className="w-full max-w-lg bg-slate-200 grid grid-cols-2 place-items-stretch p-5 rounded-lg drop-shadow-2xl gap-3 border-4 border-gray-300 selection:">
         <label htmlFor="id" className="font-bold truncate">
           ID
         </label>
@@ -40,7 +40,7 @@ const SignIn = () => {
           value={userId}
           type="text"
           onChange={(evt) => setUserId(evt.target.value)}
-          className="rounded"
+          className="rounded border-2 border-gray-300"
         />
 
         <label htmlFor="password" className="font-bold truncate">
@@ -51,7 +51,7 @@ const SignIn = () => {
           value={pass}
           type="password"
           onChange={(evt) => setPass(evt.target.value)}
-          className="rounded"
+          className="rounded border-2 border-gray-300"
         />
         <button className="bg-sky-400 hover:bg-sky-300 p-1 font-bold rounded-full w-full text-white border-2 truncate border-white">
           SignUp

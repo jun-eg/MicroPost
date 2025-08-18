@@ -40,11 +40,11 @@ const SideBar = () => {
         rows={4}
         value={msg}
         onChange={(evt) => setMsg(evt.target.value)}
-        className="border border-black"
+        className="border-gray-300 border-2 rounded-xl"
       ></textarea>
       <button
         onClick={onSendClick}
-        className="bg-sky-400 hover:bg-sky-300 p-1 font-bold rounded-full w-full text-white border-2 truncate border-white"
+        className="bg-sky-400 hover:bg-sky-300 p-1 font-bold rounded-full w-full text-white truncate"
       >
         Post
       </button>
