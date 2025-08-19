@@ -71,6 +71,8 @@ export class AuthService {
       ret.token = token;
     }
 
+    console.log('auth', ret.user_id);
+
     return ret;
   }
 }

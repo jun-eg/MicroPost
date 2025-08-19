@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import NormalButton from "./Button";
 import { useState } from "react";
 import { createUser } from "../api/User";
-import { strict } from "assert";
 
 const SignUpLayout = () => {
   const navigate = useNavigate();
