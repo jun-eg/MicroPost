@@ -2,6 +2,7 @@ import axios from "axios";
 
 export type getListResultType = {
   id: number;
+  user_id: number;
   content: string;
   user_name: string;
   created_at: Date;
@@ -15,12 +16,16 @@ export const getPostList = async (
   return res.data;
 };
 
-export const post = async (user_id: string, token: string, msg: string) => {
+export const post = async (token: string, msg: string) => {
   const data = {
     message: msg,
   };
 
   const url = `${process.env.REACT_APP_BACKEND_URL}/post?token=${token}`;
-  const res = await axios.post(url, data);
-  console.log(res.status);
+  await axios.post(url, data);
+};
+
+export const deletePost = async (token: string, id: number) => {
+  const url = `${process.env.REACT_APP_BACKEND_URL}/post?token=${token}&id=${id}`;
+  await axios.delete(url);
 };

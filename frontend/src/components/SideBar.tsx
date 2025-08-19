@@ -10,7 +10,7 @@ const SideBar = () => {
   const { setPostList } = useContext(PostListContext);
 
   const onSendClick = async () => {
-    await post(String(userInfo.id), userInfo.token, msg);
+    await post(userInfo.token, msg);
     await getPost();
   };
 
@@ -22,6 +22,7 @@ const SideBar = () => {
       posts.forEach((p: any) => {
         postList.push({
           id: p.id,
+          user_id: p.user_id,
           user_name: p.user_name,
           content: p.content,
           created_at: new Date(p.created_at),
