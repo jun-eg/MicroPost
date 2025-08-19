@@ -7,7 +7,7 @@ import NormalButton from "./Button";
 const Header = () => {
   const navigate = useNavigate();
   const { userInfo, setUserInfo } = useContext(UserContext);
-  const [userName, setUserName] = useState("");
+  const [, setUserName] = useState("");
   const logout = () => {
     setUserInfo({ id: 0, token: "", userName: "", umail: "" });
     navigate("/");
