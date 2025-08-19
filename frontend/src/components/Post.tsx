@@ -34,7 +34,7 @@ const Post = (props: postProps) => {
       <div className="col-span-1 font-bold text-sky-400/75 underline underline-offset-4 truncate">
         {post.user_name}
       </div>
-      <div className="col-span-2 font-bold text-sky-400/75  underline-offset-4 truncate">
+      <div className="col-span-2 font-bold text-sky-400/75  underline underline-offset-4 truncate">
         {getDateStr()}
       </div>
       <div className="p-2 col-span-3">{getLines(post.content)}</div>

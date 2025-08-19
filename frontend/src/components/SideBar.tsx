@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../provider/UserProvider";
 import { getListResultType, getPostList, post } from "../api/Post";
 import { PostListContext } from "../provider/PostListProvider";
-import styled from "styled-components";
+import NormalButton from "./Button";
 
 const SideBar = () => {
   const [msg, setMsg] = useState("");
@@ -36,18 +36,15 @@ const SideBar = () => {
     <div className="flex flex-col p-2 gap-2">
       <div className="font-bold truncate">{userInfo.userName}</div>
       <div className="font-bold truncate">{userInfo.umail}</div>
+
       <textarea
         rows={4}
         value={msg}
         onChange={(evt) => setMsg(evt.target.value)}
         className="border-gray-300 border-2 rounded-xl"
       ></textarea>
-      <button
-        onClick={onSendClick}
-        className="bg-sky-400 hover:bg-sky-300 p-1 font-bold rounded-full w-full text-white truncate"
-      >
-        Post
-      </button>
+
+      <NormalButton text={"Post"} click={onSendClick}></NormalButton>
     </div>
   );
 };

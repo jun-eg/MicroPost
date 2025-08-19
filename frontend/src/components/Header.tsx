@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../provider/UserProvider";
 import { getUser } from "../api/User";
+import NormalButton from "./Button";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -25,12 +26,7 @@ const Header = () => {
       <div className="col-span-2"></div>
       <div className="col-span-4 font-serif text-xl">MicroPost</div>
       <div className="col-span-1">
-        <button
-          onClick={logout}
-          className="bg-sky-400 hover:bg-sky-300 p-1 font-bold rounded-full w-full text-white border-2 border-white truncate"
-        >
-          Logout
-        </button>
+        <NormalButton text="Logout" click={logout}></NormalButton>
       </div>
       <div className="col-span-1">アイコン</div>
       <div></div>
