@@ -54,7 +54,10 @@ const SignIn = () => {
           className="rounded border-2 border-gray-300"
         />
 
-        <NormalButton text={"SignUp"}></NormalButton>
+        <NormalButton
+          text={"SignUp"}
+          click={() => navigate("/signup")}
+        ></NormalButton>
         <NormalButton text={"SignIn"} click={onSignInClick}></NormalButton>
       </div>
     </div>

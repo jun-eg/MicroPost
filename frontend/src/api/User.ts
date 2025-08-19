@@ -17,3 +17,20 @@ export const getUser = async (
   const res = await axios.get<User>(url);
   return res.data;
 };
+
+export const createUser = async (
+  name: string,
+  email: string,
+  password: string
+): Promise<boolean> => {
+  const url = `${process.env.REACT_APP_BACKEND_URL}/user`;
+
+  const data = {
+    name,
+    email,
+    password,
+  };
+
+  const res = await axios.post<boolean>(url, data);
+  return res.data;
+};

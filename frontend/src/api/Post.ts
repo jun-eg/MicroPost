@@ -20,7 +20,7 @@ export const post = async (user_id: string, token: string, msg: string) => {
     message: msg,
   };
 
-  const url = `${process.env.REACT_APP_BACKEND_URL}/post?user_id=${user_id}&token=${token}`;
+  const url = `${process.env.REACT_APP_BACKEND_URL}/post?token=${token}`;
   const res = await axios.post(url, data);
   console.log(res.status);
 };
